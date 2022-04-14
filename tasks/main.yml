@@ -14,8 +14,4 @@
     group: "{{ bind9_group }}"
     validate: 'named-checkconf %s'
   notify: bind9_handler_reload
-#- name: "{{ bind_task_prefix }} Install packages"
-#- name: "{{ bind_task_prefix }} Install packages"
-#- name: "{{ bind_task_prefix }} Install packages"
-
 ...

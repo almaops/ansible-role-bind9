@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Valentin Gostev
   namespace: almaops
@@ -13,3 +14,4 @@ galaxy_info:
     - bind
     - dns
 dependencies: []
+...
