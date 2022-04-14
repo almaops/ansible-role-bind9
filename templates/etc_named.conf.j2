@@ -12,6 +12,7 @@ options {
 {% if bind9_conf_options_allow_query|length != 0 %}
         allow-query { {{ bind9_conf_options_allow_query|join('; ') }}; };
 {% endif %}
+        recursion {{ bind9_conf_options_recursion }};
 {% if bind9_conf_options_forwarders|length != 0 %}
         forwarders { {{ bind9_conf_options_forwarders|join('; ') }}; };
 {% endif %}
