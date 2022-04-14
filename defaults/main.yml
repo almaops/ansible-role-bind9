@@ -1,0 +1,43 @@
+---
+bind9_task_prefix: "=== BIND9 DNS ==="
+
+# Common settings
+# TODO: move distro-specific package names to vars/
+bind9_packages:
+  - bind9
+  - bind9utils
+  - bind9-doc
+  - bind9-host
+bind9_user: "bind"
+bind9_group: "bind"
+bind9_systemd_unit: "named"
+
+# Templates
+bind9_template_named_conf: "etc_named.conf.j2"
+
+# Path settings
+bind9_path_conf_base: "/etc/bind"
+bind9_path_conf_main: "{{ bind9_path_conf_base }}/named.conf"
+bind9_path_directory: "/var/cache/bind"
+bind9_path_dump_file: "{{ bind9_path_directory }}/data/cache_dump.db"
+bind9_path_statistics_file: "{{ bind9_path_directory }}/data/named_stats.txt"
+bind9_path_memstatistics_file: "{{ bind9_path_directory }}/data/named_mem_stats.txt"
+
+# Network settings
+bind9_bind_ports_ipv4:
+  - 53
+bind9_bind_addr_ipv4:
+  - '127.0.0.1'
+bind9_bind_ports_ipv6: []
+bind9_bind_addr_ipv6: []
+
+# Configuration settings
+bind9_conf_include:
+  - "/etc/bind/named.conf.default-zones"
+bind9_conf_options_allow_query:
+  - 'localhost'
+bind9_conf_options_recursion: "no"
+bind9_conf_options_allow_recursion: []
+bind9_conf_options_forwarders: []
+bind9_conf_options_rrset_order: "random"
+...

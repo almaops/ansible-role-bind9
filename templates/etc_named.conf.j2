@@ -1,0 +1,23 @@
+options {
+{% for port in bind9_bind_ports_ipv4 %}
+        listen-on port {{ port }} { {{ bind9_bind_addr_ipv4|join('; ') }}; };
+{% endfor %}
+{% for port in bind9_bind_ports_ipv6 %}
+        listen-on-v6 port {{ port }} { {{ bind9_bind_addr_ipv6|join('; ') }}; };
+{% endfor %}
+        directory "{{ bind9_path_directory }}";
+        dump-file "{{ bind9_path_dump_file }}";
+        statistics-file "{{ bind9_path_statistics_file }}";
+        memstatistics-file "{{ bind9_path_memstatistics_file }}";
+{% if bind9_conf_options_allow_query|length != 0 %}
+        allow-query { {{ bind9_conf_options_allow_query|join('; ') }}; };
+{% endif %}
+{% if bind9_conf_options_forwarders|length != 0 %}
+        forwarders { {{ bind9_conf_options_forwarders|join('; ') }}; };
+{% endif %}
+        rrset-order { order {{ bind9_conf_options_rrset_order }}; };
+};
+
+{% for include in bind9_conf_include %}
+include "{{ include }}";
+{% endfor %}

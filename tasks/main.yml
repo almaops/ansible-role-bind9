@@ -1,0 +1,21 @@
+---
+- name: "{{ bind9_task_prefix }} Install packages"
+  ansible.builtin.package:
+    pkg: "{{ item }}"
+    state: present
+  loop: "{{ bind9_packages }}"
+
+- name: "{{ bind9_task_prefix }} Put config file"
+  ansible.builtin.template:
+    src: "{{ bind9_template_named_conf }}"
+    dest: "{{ bind9_path_conf_main }}"
+    mode: '0640'
+    owner: root
+    group: "{{ bind9_group }}"
+    validate: 'named-checkconf %s'
+  notify: bind9_handler_reload
+#- name: "{{ bind_task_prefix }} Install packages"
+#- name: "{{ bind_task_prefix }} Install packages"
+#- name: "{{ bind_task_prefix }} Install packages"
+
+...
