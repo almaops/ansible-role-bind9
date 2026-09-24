@@ -1,3 +1,7 @@
+# Deprecation notice
+This repo is archived in favor of bind9 role via [almaops.common](https://github.com/almaops/ansible-collection-common/tree/master/roles/bind9) collection.
+
+
 # almaops.bind9
 This ansible role installs and condifures Bind9 DNS server.  
 
